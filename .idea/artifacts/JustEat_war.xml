@@ -7,7 +7,7 @@
         <packaging>war</packaging>
       </options>
     </properties>
-    <root id="archive" name="JustEat-1.0-SNAPSHOT.war">
+    <root id="archive" name="Test-1.0-SNAPSHOT.war">
       <element id="artifact" artifact-name="JustEat:war exploded" />
     </root>
   </artifact>

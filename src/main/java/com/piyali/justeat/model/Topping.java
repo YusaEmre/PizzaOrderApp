@@ -1,4 +1,4 @@
-package com.example.test.model;
+package com.piyali.justeat.model;
 
 import lombok.*;
 

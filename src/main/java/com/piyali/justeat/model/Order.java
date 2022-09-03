@@ -1,10 +1,8 @@
-package com.example.test.model;
+package com.piyali.justeat.model;
 
 import lombok.*;
 
 import javax.persistence.*;
-import java.math.BigDecimal;
-import java.util.List;
 import java.util.Set;
 
 @Entity

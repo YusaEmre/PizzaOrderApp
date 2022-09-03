@@ -1,4 +1,4 @@
-package com.example.test;
+package com.piyali.justeat;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
