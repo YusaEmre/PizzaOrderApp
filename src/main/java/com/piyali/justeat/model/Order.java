@@ -11,10 +11,14 @@ import java.util.Set;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
+@Table(name = "orders")
 public class Order {
 
 
     @Id
+    @GeneratedValue(
+            strategy = GenerationType.IDENTITY
+    )
     private Long orderId;
 
     private Double totalPrice;
@@ -23,5 +27,5 @@ public class Order {
     private Set<Topping> topping;
 
     @ManyToOne
-    private User userId;
+    private User user;
 }

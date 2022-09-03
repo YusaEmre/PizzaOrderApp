@@ -27,8 +27,6 @@ class User {
     private String phoneNumber;
     private Boolean isAdmin = false;
 
-    @ManyToMany
-    private Set<Topping> toppingList;
     @OneToMany
     private List<Order> orderList;
 }
