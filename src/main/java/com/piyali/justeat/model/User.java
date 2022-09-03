@@ -13,7 +13,8 @@ import java.util.Set;
 @NoArgsConstructor
 @Setter
 @Getter
-class User {
+@Builder
+public class User {
 
     @Id
     @GeneratedValue(
@@ -25,6 +26,7 @@ class User {
     private String lastName;
     private String address;
     private String phoneNumber;
+    private String password;
     private Boolean isAdmin = false;
 
     @OneToMany

@@ -1,44 +1,32 @@
 package com.piyali.justeat.controller;
 
 import com.piyali.justeat.Service.LoginService;
+import com.piyali.justeat.payload.request.LoginRequest;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Map;
 
 
 @Controller
 @SessionAttributes("name")
+@RequiredArgsConstructor
 public class LoginController {
 
-
-    private final LoginService service;
-
-    public LoginController(LoginService service) {
-        this.service = service;
-    }
+    private final LoginService loginService;
 
     @RequestMapping(value= {"/login",""}, method = RequestMethod.GET)
-    public String showLoginPage(ModelMap model){
+    public String showLoginPage(){
         return "login";
     }
 
-    @RequestMapping(value="/login", method = RequestMethod.POST)
-    public String showWelcomePage(ModelMap model, @RequestParam String name, @RequestParam String password){
+    @RequestMapping(value = "/home",method = RequestMethod.POST)
+    public String showWelcomePage(@ModelAttribute("loginRequest") LoginRequest loginRequest){
 
-        boolean isValidUser = service.validateUser(name, password);
-
-        if (!isValidUser) {
-            model.put("errorMessage", "Invalid Credentials");
-            return "login";
-        }
-
-        model.put("name", name);
-        model.put("password", password);
-
-        return "welcome";
+       return loginService.validateUser(loginRequest) ? "registered" : "redirect:/login";
     }
 
 }
