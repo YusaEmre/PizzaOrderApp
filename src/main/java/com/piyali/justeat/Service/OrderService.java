@@ -1,9 +1,9 @@
-package com.piyali.justeat.Service;
+package com.piyali.justeat.service;
 
 import com.piyali.justeat.model.Order;
+import com.piyali.justeat.payload.response.OrderResponse;
 import com.piyali.justeat.repository.OrderRepository;
 import lombok.RequiredArgsConstructor;
-import org.omg.CORBA.Object;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -14,10 +14,8 @@ import java.util.List;
 public class OrderService {
 
     private final OrderRepository orderRepository;
-
     public Order saveOrder(Order order) {
-        orderRepository.save(order);
-        return order;
+        return orderRepository.save(order);
     }
 
     public List<Order> getAllOrder() {
@@ -25,6 +23,6 @@ public class OrderService {
     }
 
     public Order getOrderByOrderId(Long orderId) {
-        return  orderRepository.findById(orderId).orElseThrow(()->new IllegalStateException("Order not found"));
+        return orderRepository.getOrderByOrderId(orderId);
     }
 }
