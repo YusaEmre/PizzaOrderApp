@@ -14,18 +14,17 @@ public class Application {
 
     }
 
-    /*
-    @Bean
+ /*   @Bean
     public CommandLineRunner demo(UserRepository repository) {
         return (args) -> {
             repository.save(User.builder().userName("piyali")
                     .lastName("Bedagkar").name("piyali")
                         .address("India").isAdmin(true).phoneNumber("04502678992").password("Bedagkar12345").build());
             repository.save(User.builder().userName("Kote")
-                    .lastName("Kote").name("KoteYusa")
-                    .address("Turkey").isAdmin(false).phoneNumber("05321361234").password("KoteYusa12345").build());
+                    .lastName("Kote").name("laszlo")
+                    .address("Turkey").isAdmin(false).phoneNumber("05321361234").password("12345").build());
         };
     }
+*/
 
-     */
 }
