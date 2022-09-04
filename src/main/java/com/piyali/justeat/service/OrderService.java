@@ -20,7 +20,8 @@ public class OrderService {
         return orderRepository.findAll();
     }
 
-    public Order getOrderByOrderId(String orderId) {
-        return orderRepository.getOrderByOrderId(orderId);
+    public List<Order> getAllOrderByUserName(String username) {
+
+        return orderRepository.getAllByUser_UserName(username);
     }
 }
