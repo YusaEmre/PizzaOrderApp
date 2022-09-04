@@ -1,0 +1,89 @@
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+         pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+    <title>Login</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script>
+        $( function() {
+            $( "#datepicker" ).datepicker();
+
+        } );
+
+
+
+        function myFunc() {
+            var  price= $("#selected").val();
+            var sum = parseFloat(price) + parseFloat("350")
+            $("#price").val(sum);
+        }
+    </script>
+
+
+</head>
+<body>
+<div align="center">
+    <h1>Place Order</h1>
+
+    <form action="/api/order/addOrder" method="post" modelAttribute="OrderAddRequest">
+        <table border="0" style="with: 50%; padding: 5px; margin-top: 10%; margin-bottom: 5px">
+            <tr>
+                <td>Customer Id</td>
+                <td><input readonly type="text" name="customerId" value="${user.id}"/></td>
+            </tr>
+            <tr>
+                <td>Customer Name</td>
+                <td><input type="text" name="customerName" value="${user.name}"/></td>
+            </tr>
+            <tr>
+                <td>Customer Last Name</td>
+                <td><input type="text" name="customerLastName" value="${user.lastName}"/></td>
+            </tr>
+            <tr>
+                <td>Customer Address</td>
+                <td><input type="text" name="customerAddress" value="${user.address}"/></td>
+            </tr>
+            <tr>
+                <td>Customer Phone Number</td>
+                <td><input type="text" name="customerPhoneNumber" value="${user.phoneNumber}"/></td>
+            </tr>
+            <tr>
+                <td>Toppings</td>
+                <td>
+                    <div class="dropdown">
+                    </button>
+                    <select id="selected" onchange="myFunc()" name="topping" style="width: 18rem">
+                        <c:forEach items="${toppings}" var="topping">
+                            <option  value="${topping.toppingPrice}">${topping.toppingName}</option>
+                        </c:forEach>
+                    </select>
+                </div></td>
+            </tr>
+            <tr>
+                <td>Delivery date</td>
+                <td>
+                    <input name="deliveryDate" type="text" id="datepicker">
+                </td>
+            </tr>
+            <tr>
+                <td>Price: </td>
+                <td>
+                    <input name="totalPrice" readonly value="" type="text" id="price" >
+                </td>
+            </tr>
+        </table>
+        <span style="padding: 50px"></span>
+        <input type="submit" value="Submit" class="btn btn-primary"/></form>
+
+</div>
+</body>
+</html>
+

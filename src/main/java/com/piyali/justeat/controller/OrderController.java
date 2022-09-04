@@ -1,13 +1,16 @@
 package com.piyali.justeat.controller;
+import com.piyali.justeat.model.Topping;
+import com.piyali.justeat.model.User;
+import com.piyali.justeat.payload.request.OrderAddRequest;
 import com.piyali.justeat.service.OrderService;
 import com.piyali.justeat.model.Order;
+import com.piyali.justeat.service.ToppingService;
+import com.piyali.justeat.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 
@@ -18,19 +21,35 @@ public class OrderController {
 
     //call order service
     private final OrderService orderService;
+    private final UserService userService;
 
-    @PostMapping("/addOrder")
-    public ResponseEntity<Order> addOrder(Order order){
-        return ResponseEntity.ok(orderService.saveOrder(order));
+    private final ToppingService toppingService;
+
+    @RequestMapping(value = "/addOrder",method = RequestMethod.POST)
+    public ModelAndView addOrder(@ModelAttribute("OrderAddRequest") OrderAddRequest request){
+        Order order = orderService.saveOrder(request);
+        ModelAndView modelAndView = new ModelAndView("orderDetailPage");
+        modelAndView.addObject("order",order);
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "/placeOrder",method = RequestMethod.GET)
+    public ModelAndView placeOrderPage(@RequestParam String username){
+        User user = userService.findByName(username);
+        List<Topping> toppings = toppingService.getAllToppings();
+        ModelAndView modelAndView = new ModelAndView("placeOrderPage");
+        modelAndView.addObject("user",user);
+        modelAndView.addObject("toppings",toppings);
+        return modelAndView;
     }
 
 
-    @GetMapping("/getAllOrder")
+    @RequestMapping(value = "/getAllOrder",method = RequestMethod.GET)
     public ResponseEntity<List<Order>> getAllOrder(){
         return ResponseEntity.ok(orderService.getAllOrder());
     }
 
-    @GetMapping("/getOrderByOrderId/{orderId}")
+    @RequestMapping(value = "/getOrderByOrderId",method = RequestMethod.GET)
     public ResponseEntity<Order> getOrderByOrderId(@PathVariable String orderId){
         return ResponseEntity.ok(orderService.getOrderByOrderId(orderId));
     }

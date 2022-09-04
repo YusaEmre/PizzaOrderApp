@@ -5,6 +5,7 @@ import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Set;
 
@@ -13,7 +14,7 @@ import java.util.Set;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
+@Builder(toBuilder = true)
 @Table(name = "orders")
 public class Order {
 
@@ -25,17 +26,17 @@ public class Order {
 
     private Double totalPrice;
 
-    @ManyToMany
-    private Set<Topping> topping;
+    @ManyToOne
+    private Topping topping;
 
     @ManyToOne
     private User user;
 
-    @JsonFormat(pattern = "dd-MM-yyyy HH:mm:ss")
-    private LocalDateTime orderPlacedDate;
+    @JsonFormat(pattern = "MM-dd-yyyy")
+    private LocalDate orderPlacedDate = LocalDate.now();
 
-    @JsonFormat(pattern = "dd-MM-yyyy HH:mm:ss")
-    private LocalDateTime deliveryDate;
+    @JsonFormat(pattern = "MM-dd-yyyy")
+    private LocalDate deliveryDate;
 
 
 }
