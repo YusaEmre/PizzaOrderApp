@@ -1,10 +1,8 @@
 package com.piyali.justeat.service;
 
 import com.piyali.justeat.model.Order;
-import com.piyali.justeat.payload.response.OrderResponse;
 import com.piyali.justeat.repository.OrderRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -22,7 +20,7 @@ public class OrderService {
         return orderRepository.findAll();
     }
 
-    public Order getOrderByOrderId(Long orderId) {
+    public Order getOrderByOrderId(String orderId) {
         return orderRepository.getOrderByOrderId(orderId);
     }
 }

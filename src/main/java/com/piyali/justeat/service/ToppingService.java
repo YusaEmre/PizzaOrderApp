@@ -1,4 +1,4 @@
-package com.piyali.justeat.Service;
+package com.piyali.justeat.service;
 
 import org.springframework.stereotype.Service;
 

@@ -1,6 +1,5 @@
 package com.piyali.justeat.controller;
-
-import com.piyali.justeat.Service.OrderService;
+import com.piyali.justeat.service.OrderService;
 import com.piyali.justeat.model.Order;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -20,7 +19,6 @@ public class OrderController {
     //call order service
     private final OrderService orderService;
 
-
     @PostMapping("/addOrder")
     public ResponseEntity<Order> addOrder(Order order){
         return ResponseEntity.ok(orderService.saveOrder(order));
@@ -33,7 +31,7 @@ public class OrderController {
     }
 
     @GetMapping("/getOrderByOrderId/{orderId}")
-    public ResponseEntity<Order> getOrderByOrderId(@PathVariable Long orderId){
+    public ResponseEntity<Order> getOrderByOrderId(@PathVariable String orderId){
         return ResponseEntity.ok(orderService.getOrderByOrderId(orderId));
     }
 

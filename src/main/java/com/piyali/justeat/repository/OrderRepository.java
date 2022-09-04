@@ -3,7 +3,7 @@ package com.piyali.justeat.repository;
 import com.piyali.justeat.model.Order;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface OrderRepository extends JpaRepository<Order,Long> {
+public interface OrderRepository extends JpaRepository<Order,String> {
 
-    Order getOrderByOrderId(Long id);
+    Order getOrderByOrderId(String id);
 }

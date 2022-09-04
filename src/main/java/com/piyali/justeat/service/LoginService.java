@@ -1,4 +1,4 @@
-package com.piyali.justeat.Service;
+package com.piyali.justeat.service;
 import com.piyali.justeat.exception.NotFoundException;
 import com.piyali.justeat.model.User;
 import com.piyali.justeat.payload.request.LoginRequest;

@@ -1,6 +1,7 @@
 package com.piyali.justeat.model;
 
 import lombok.*;
+import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 
@@ -11,11 +12,11 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Builder
 public class Topping {
+
     @Id
-    @GeneratedValue(
-            strategy = GenerationType.IDENTITY
-    )
-    private Long id;
+    @GeneratedValue(generator="uuid")
+    @GenericGenerator(name="uuid", strategy = "uuid2")
+    private String id;
 
     private String toppingName;
 

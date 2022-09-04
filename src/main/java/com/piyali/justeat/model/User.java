@@ -1,6 +1,7 @@
 package com.piyali.justeat.model;
 
 import lombok.*;
+import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.util.List;
@@ -17,10 +18,9 @@ import java.util.Set;
 public class User {
 
     @Id
-    @GeneratedValue(
-            strategy = GenerationType.IDENTITY
-    )
-    private Long id;
+    @GeneratedValue(generator="uuid")
+    @GenericGenerator(name="uuid", strategy = "uuid2")
+    private String id;
     private String userName;
     private String name;
     private String lastName;

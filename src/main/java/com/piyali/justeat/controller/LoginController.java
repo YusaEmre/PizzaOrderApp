@@ -1,20 +1,12 @@
 package com.piyali.justeat.controller;
 
-import com.piyali.justeat.Service.LoginService;
-import com.piyali.justeat.exception.NotFoundException;
+import com.piyali.justeat.service.LoginService;
 import com.piyali.justeat.payload.request.LoginRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
-import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
 
 
 @Controller
