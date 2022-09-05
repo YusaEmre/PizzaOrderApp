@@ -6,7 +6,7 @@ import com.piyali.justeat.model.Topping;
 import com.piyali.justeat.model.User;
 import com.piyali.justeat.payload.request.OrderAddRequest;
 import com.piyali.justeat.repository.OrderRepository;
-import lombok.RequiredArgsConstructor;
+
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -14,7 +14,6 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @Service
-@RequiredArgsConstructor
 public class OrderService {
 
     private final UserService userService;
@@ -22,19 +21,18 @@ public class OrderService {
     private final ToppingService toppingService;
     private final OrderRepository orderRepository;
 
+    public OrderService(UserService userService, ToppingService toppingService, OrderRepository orderRepository) {
+        this.userService = userService;
+        this.toppingService = toppingService;
+        this.orderRepository = orderRepository;
+    }
 
 
     public Order saveOrder(OrderAddRequest request) {
         User user =userService.findById(request.getCustomerId());
         Topping topping = toppingService.getToppingByPrice(request.getToppingPrice());
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
-        Order order = new Order().toBuilder()
-                .deliveryDate(LocalDate.parse(request.getDeliveryDate(),dateTimeFormatter))
-                .topping(topping)
-                .totalPrice(request.getTotalPrice())
-                .user(user)
-                .build();
-
+        Order order = new Order(request.getTotalPrice(),topping,user,LocalDate.parse(request.getDeliveryDate(),dateTimeFormatter));
         orderRepository.save(order);
         user.getOrderList().add(order);
         orderRepository.flush();

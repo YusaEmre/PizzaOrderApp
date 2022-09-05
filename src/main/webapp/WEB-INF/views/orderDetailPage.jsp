@@ -46,7 +46,7 @@
             </tr>
         </table>
     </form>
-    <a href="<spring:url value="/home?username=${order.user.name}"/>" class="btn btn-primary"  style="margin: 10px">Ok</a>
+    <a href="<spring:url value="/home?username=${order.user.userName}"/>" class="btn btn-primary"  style="margin: 10px">Ok</a>
     <a href="<spring:url value="/api/order/editOrderPage?orderId=${order.orderId}"/>" class="btn btn-primary" style="margin: 10px" >Edit Order</a>
 
 </div>

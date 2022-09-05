@@ -6,10 +6,7 @@ import com.piyali.justeat.service.OrderService;
 import com.piyali.justeat.model.Order;
 import com.piyali.justeat.service.ToppingService;
 import com.piyali.justeat.service.UserService;
-import lombok.RequiredArgsConstructor;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -17,7 +14,6 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/api/order")
-@RequiredArgsConstructor
 public class OrderController {
 
     //call order service
@@ -25,6 +21,12 @@ public class OrderController {
     private final UserService userService;
 
     private final ToppingService toppingService;
+
+    public OrderController(OrderService orderService, UserService userService, ToppingService toppingService) {
+        this.orderService = orderService;
+        this.userService = userService;
+        this.toppingService = toppingService;
+    }
 
     @RequestMapping(value = "/addOrder",method = RequestMethod.POST)
     public ModelAndView addOrder(@ModelAttribute("OrderAddRequest") OrderAddRequest request){

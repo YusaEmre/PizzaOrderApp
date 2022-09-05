@@ -3,13 +3,17 @@ package com.piyali.justeat.service;
 import com.piyali.justeat.exception.NotFoundException;
 import com.piyali.justeat.model.User;
 import com.piyali.justeat.repository.UserRepository;
-import lombok.RequiredArgsConstructor;
+
 import org.springframework.stereotype.Service;
 
 @Service
-@RequiredArgsConstructor
+
 public class UserService {
     private final UserRepository userRepository;
+
+    public UserService(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
 
 
     public User findByName(String username){
