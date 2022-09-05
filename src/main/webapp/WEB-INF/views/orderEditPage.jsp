@@ -26,8 +26,12 @@
 <div align="center">
     <h1>Edit Your Order</h1>
 
-    <form action="/api/order/updateOrder" method="post" modelAttribute="OrderEditRequest">
+    <form action="/api/order/updateOrder?username=${order.user.userName}" method="post" modelAttribute="OrderEditRequest">
         <table border="0" style="with: 50%; padding: 5px; margin-top: 10%; margin-bottom: 5px">
+            <tr>
+                <td>Order Id</td>
+                <td><input readonly type="text" name="orderId" value="${order.orderId}"/></td>
+            </tr>
             <tr>
                 <td>Customer Id</td>
                 <td><input readonly type="text" name="customerId" value="${order.user.id}"/></td>

@@ -5,6 +5,7 @@ import com.piyali.justeat.model.Order;
 import com.piyali.justeat.model.Topping;
 import com.piyali.justeat.model.User;
 import com.piyali.justeat.payload.request.OrderAddRequest;
+import com.piyali.justeat.payload.request.OrderEditRequest;
 import com.piyali.justeat.repository.OrderRepository;
 
 import org.springframework.stereotype.Service;
@@ -51,5 +52,12 @@ public class OrderService {
 
     public Order getOrderById(String orderId){
         return orderRepository.getOrderByOrderId(orderId).orElseThrow(()-> new NotFoundException("Order not found"));
+    }
+
+    public void updateOrder(OrderEditRequest request) {
+        Order order = orderRepository.findById(request.getOrderId()).orElseThrow(()-> new NotFoundException("Order not found"));
+        Topping topping = toppingService.getToppingByPrice(request.getToppingPrice());
+        order.setTopping(topping);
+        orderRepository.flush();
     }
 }

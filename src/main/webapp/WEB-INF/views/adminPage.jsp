@@ -8,23 +8,33 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>Just Eat</title>
+    <title>Just Eat Admin Page</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/css/bootstrap.min.css">
 </head>
+<nav class="navbar navbar-expand-sm bg-light">
+
+    <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+            <span style="margin: 10px" class="font-weight-bolder"> ${username}</span>
+        </li>
+        <li class="nav-item">
+            <a href="<spring:url value="/login"/>" class="btn btn-danger" style="width: 5rem">Logout</a>
+        </li>
+    </ul>
+</nav>
 <body>
-<nav>${username}</nav>
 <div align="center" style="with: 50%; padding: 5px; margin-top: 10%; margin-bottom: 5px">
     <h1>Welcome to Just Eat Pizza</h1>
     <span style="padding:15px;"></span>
     <div class="card" style="width: 18rem;">
         <div class="card-body">
-            <a href="<spring:url value="/api/order/toppingsPage?username=${username}"/>" class="btn btn-primary" style="width: 18rem">Toppings</a>
+            <a href="<spring:url value="/api/order/searchOrder?username=${username}"/>" class="btn btn-primary" style="width: 12rem">Display Order</a>
         </div>
     </div>
     <span style="padding:5px;"></span>
     <div class="card" style="width: 18rem;">
         <div class="card-body">
-            <a href="<spring:url value="/api/order/orderListPage?username=${username}"/>" class="btn btn-primary" style="width: 18rem">Orders</a>
+            <a href="<spring:url value="/api/topping/toppingListPage?username=${username}"/>" class="btn btn-primary" style="width: 12rem">Display Toppings</a>
         </div>
     </div>
     <span style="padding:5px;"></span>

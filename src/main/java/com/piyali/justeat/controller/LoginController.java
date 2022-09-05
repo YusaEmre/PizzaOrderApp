@@ -15,6 +15,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 @Controller
 @SessionAttributes("name")
 
+
 public class LoginController {
 
     private  final UserService userService;
@@ -26,8 +27,11 @@ public class LoginController {
     }
 
 
+
+
+
     @RequestMapping(value= {"/login",""}, method = RequestMethod.GET)
-    public String showLoginPage(ModelMap model){
+    public String showLoginPage(){
         return "login";
     }
 

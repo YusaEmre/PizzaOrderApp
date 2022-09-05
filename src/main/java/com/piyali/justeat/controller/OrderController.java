@@ -2,6 +2,7 @@ package com.piyali.justeat.controller;
 import com.piyali.justeat.model.Topping;
 import com.piyali.justeat.model.User;
 import com.piyali.justeat.payload.request.OrderAddRequest;
+import com.piyali.justeat.payload.request.OrderEditRequest;
 import com.piyali.justeat.service.OrderService;
 import com.piyali.justeat.model.Order;
 import com.piyali.justeat.service.ToppingService;
@@ -47,7 +48,7 @@ public class OrderController {
     }
 
     @RequestMapping(value = "/editOrderPage",method = RequestMethod.GET)
-    public ModelAndView editOrderPage(@RequestParam String orderId){
+    public ModelAndView editOrderPage(@RequestParam("orderId") String orderId){
         Order order = orderService.getOrderById(orderId);
         List<Topping> toppings = toppingService.getAllToppings();
         ModelAndView modelAndView = new ModelAndView("orderEditPage");
@@ -61,6 +62,16 @@ public class OrderController {
         ModelAndView modelAndView = new ModelAndView("orderListPage");
         modelAndView.addObject("orders",orderList);
         System.out.println(orderList.size());
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "/updateOrder",method = RequestMethod.POST)
+    public ModelAndView editOrderPage(@RequestParam("username")String username,@ModelAttribute("OrderEditRequest") OrderEditRequest orderEditRequest){
+        orderService.updateOrder(orderEditRequest);
+        List<Order> orderList = userService.findByName(username).getOrderList();
+        ModelAndView modelAndView = new ModelAndView("orderListPage");
+        modelAndView.addObject("orders",orderList);
+        modelAndView.addObject("username",username);
         return modelAndView;
     }
 

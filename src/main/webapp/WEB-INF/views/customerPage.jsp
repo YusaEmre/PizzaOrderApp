@@ -15,14 +15,14 @@
 
     <ul class="navbar-nav ml-auto">
         <li class="nav-item">
-              <span class="font-weight-bolder"> ${username}</span>
+            <span style="margin: 10px" class="font-weight-bolder"> ${username}</span>
         </li>
         <li class="nav-item">
             <a href="<spring:url value="/login"/>" class="btn btn-danger" style="width: 5rem">Logout</a>
         </li>
     </ul>
 </nav>
-
+<body>
 <div align="center" style="with: 50%; padding: 5px; margin-top: 10%; margin-bottom: 5px">
     <h1>Welcome to Just Eat Pizza</h1>
     <span style="padding:15px;"></span>
