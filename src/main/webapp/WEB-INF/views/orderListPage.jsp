@@ -8,16 +8,16 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>Customer</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <title>Just Eat</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/css/bootstrap.min.css">
 </head>
 <body>
 <nav class="navbar navbar-light" style="background-color: #e3f2fd;">
     <i ></i>
 </nav>
 
-<
 <div align="center">
+    <h1> Order List </h1>
 <table class="table" style="width: 70%; padding: 5px; margin-top: 20%">
     <thead>
 <tr>
@@ -32,17 +32,13 @@
     </tr>
     </thead>
     <tbody>
-<c:forEach  items="${orders}" var="order">
+<c:forEach  items="${orders}" var="order" varStatus="loop">
 <tr>
-        <th scope="row">1</th>
+        <th scope="row">${loop.index+1}</th>
         <td>${order.orderId}</td>
         <td>${order.user.userName}</td>
         <td>${order.user.address}</td>
-    <c:forEach  items="${order.topping}" var="ord">
-        <td>
-            ${ord.toppingName}
-        </td>
-    </c:forEach>
+        <td>${order.topping.toppingName}</td>
         <td>${order.orderPlacedDate}</td>
         <td>${order.deliveryDate}</td>
         <td>${order.totalPrice}</td>

@@ -1,6 +1,8 @@
 package com.piyali.justeat.service;
 
+import com.piyali.justeat.exception.NotFoundException;
 import com.piyali.justeat.model.Order;
+import com.piyali.justeat.model.Topping;
 import com.piyali.justeat.model.User;
 import com.piyali.justeat.payload.request.OrderAddRequest;
 import com.piyali.justeat.repository.OrderRepository;
@@ -16,17 +18,27 @@ import java.util.List;
 public class OrderService {
 
     private final UserService userService;
+
+    private final ToppingService toppingService;
     private final OrderRepository orderRepository;
+
+
+
     public Order saveOrder(OrderAddRequest request) {
         User user =userService.findById(request.getCustomerId());
+        Topping topping = toppingService.getToppingByPrice(request.getToppingPrice());
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
         Order order = new Order().toBuilder()
                 .deliveryDate(LocalDate.parse(request.getDeliveryDate(),dateTimeFormatter))
-                .topping(request.getTopping())
+                .topping(topping)
                 .totalPrice(request.getTotalPrice())
                 .user(user)
                 .build();
-        return orderRepository.save(order);
+
+        orderRepository.save(order);
+        user.getOrderList().add(order);
+        orderRepository.flush();
+        return order;
     }
 
     public List<Order> getAllOrder() {
@@ -36,5 +48,10 @@ public class OrderService {
     public List<Order> getAllOrderByUserName(String username) {
 
         return orderRepository.getAllByUser_UserName(username);
+    }
+
+
+    public Order getOrderById(String orderId){
+        return orderRepository.getOrderByOrderId(orderId).orElseThrow(()-> new NotFoundException("Order not found"));
     }
 }

@@ -1,7 +1,10 @@
 package com.piyali.justeat.controller;
 
+import com.piyali.justeat.model.User;
 import com.piyali.justeat.service.LoginService;
 import com.piyali.justeat.payload.request.LoginRequest;
+import com.piyali.justeat.service.UserService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
@@ -11,14 +14,13 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @SessionAttributes("name")
+@RequiredArgsConstructor
 public class LoginController {
 
-
+    private  final UserService userService;
     private final LoginService loginService;
 
-    public LoginController(LoginService loginService) {
-        this.loginService = loginService;
-    }
+
 
     @RequestMapping(value= {"/login",""}, method = RequestMethod.GET)
     public String showLoginPage(ModelMap model){
@@ -45,5 +47,19 @@ public class LoginController {
             return modelAndView;
         }
     }
+    @RequestMapping(value = "/home",method = RequestMethod.GET)
+    public ModelAndView showHomePage(@RequestParam("username") String username)  {
+        User user = userService.findByName(username);
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.addObject("username",username);
+        if(user.getIsAdmin()){
+            modelAndView.setViewName("adminPage");
+        }else{
+            modelAndView.setViewName("customerPage");
+        }
+        return modelAndView;
+    }
+
+
 
 }

@@ -13,13 +13,6 @@
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script>
-        $( function() {
-            $( "#datepicker" ).datepicker();
-
-        } );
-
-
-
         function myFunc() {
             var  price= $("#selected").val();
             var sum = parseFloat(price) + parseFloat("350")
@@ -31,57 +24,58 @@
 </head>
 <body>
 <div align="center">
-    <h1>Place Order</h1>
+    <h1>Edit Your Order</h1>
 
-    <form action="/api/order/addOrder" method="post" modelAttribute="OrderAddRequest">
+    <form action="/api/order/updateOrder" method="post" modelAttribute="OrderEditRequest">
         <table border="0" style="with: 50%; padding: 5px; margin-top: 10%; margin-bottom: 5px">
             <tr>
                 <td>Customer Id</td>
-                <td><input readonly type="text" name="customerId" value="${user.id}"/></td>
+                <td><input readonly type="text" name="customerId" value="${order.user.id}"/></td>
             </tr>
             <tr>
                 <td>Customer Name</td>
-                <td><input type="text" name="customerName" value="${user.name}"/></td>
+                <td><input readonly type="text" name="customerName" value="${order.user.name}"/></td>
             </tr>
             <tr>
                 <td>Customer Last Name</td>
-                <td><input type="text" name="customerLastName" value="${user.lastName}"/></td>
+                <td><input readonly type="text" name="customerLastName" value="${order.user.lastName}"/></td>
             </tr>
             <tr>
                 <td>Customer Address</td>
-                <td><input type="text" name="customerAddress" value="${user.address}"/></td>
+                <td><input readonly type="text" name="customerAddress" value="${order.user.address}"/></td>
             </tr>
             <tr>
                 <td>Customer Phone Number</td>
-                <td><input type="text" name="customerPhoneNumber" value="${user.phoneNumber}"/></td>
+                <td><input readonly type="text" name="customerPhoneNumber" value="${order.user.phoneNumber}"/></td>
             </tr>
             <tr>
                 <td>Toppings</td>
                 <td>
                     <div class="dropdown">
-                    <select id="selected" onchange="myFunc()" name="toppingPrice" style="width: 18rem">
-                        <c:forEach items="${toppings}" var="topping">
-                            <option  value="${topping.toppingPrice}">${topping.toppingName}</option>
-                        </c:forEach>
-                    </select>
-                </div></td>
+                        <select id="selected"  onchange="myFunc()" name="toppingPrice" style="width: 18rem" >
+                                <c:forEach var="topping" items="${toppings}">
+                                    <option value="${topping.toppingPrice}"  ${topping.toppingName == order.topping.toppingName ? 'selected="selected"' : ''}>${topping.toppingName}</option>
+                                </c:forEach>
+                        </select>
+                    </div></td>
             </tr>
             <tr>
                 <td>Delivery date</td>
                 <td>
-                    <input name="deliveryDate" type="text" id="datepicker">
+                    <input readonly name="deliveryDate" type="text" id="datepicker" value="${order.deliveryDate}">
                 </td>
             </tr>
             <tr>
                 <td>Price: </td>
                 <td>
-                    <input name="totalPrice" readonly value="" type="text" id="price" >
+                    <input o name="totalPrice" readonly value="${order.totalPrice}" type="text" id="price" >
                 </td>
             </tr>
         </table>
-        <input  style="margin: 10px" type="submit" value="Submit" class="btn btn-primary"/></form>
+        <input style="margin: 10px" type="submit" value="Submit" class="btn btn-primary"/></form>
+
+
 
 </div>
 </body>
 </html>
-

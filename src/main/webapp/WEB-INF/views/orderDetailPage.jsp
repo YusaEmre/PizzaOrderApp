@@ -7,11 +7,11 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-    <title>Login</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <title>Just Eat</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/css/bootstrap.min.css">
 </head>
 <body>
-<div align="center">
+<div align="center" >
     <h1>Order Detail Page</h1>
 
     <form action="home" method="get" modelAttribute="Order">
@@ -38,15 +38,16 @@
             </tr>
             <tr>
                 <td>Total Price</td>
-                <td><input readonly type="text" name="customerPhoneNumber" value="${order.totalPrice}"/></td>
+                <td><input readonly type="text" name="totalPrice" value="${order.totalPrice}"/></td>
             </tr>
             <tr>
                 <td>Topping</td>
-                <td><input type="text" name="customerPhoneNumber" value="${order.topping.toppingName}"/></td>
+                <td><input type="text"  readonly name="toppingName" value="${order.topping.toppingName}"/></td>
             </tr>
         </table>
-        <span style="padding: 50px"></span>
-        <input type="submit" value="Ok" class="btn btn-primary"/></form>
+    </form>
+    <a href="<spring:url value="/home?username=${order.user.name}"/>" class="btn btn-primary"  style="margin: 10px">Ok</a>
+    <a href="<spring:url value="/api/order/editOrderPage?orderId=${order.orderId}"/>" class="btn btn-primary" style="margin: 10px" >Edit Order</a>
 
 </div>
 </body>

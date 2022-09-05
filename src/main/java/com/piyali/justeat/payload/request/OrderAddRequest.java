@@ -21,9 +21,8 @@ public class OrderAddRequest {
     private String customerLastName;
     private String customerAddress;
     private String customerPhoneNumber;
-    private Topping topping;
+    private Double toppingPrice;
     private Double totalPrice;
-
     private String deliveryDate;
 
 

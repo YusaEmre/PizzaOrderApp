@@ -15,19 +15,25 @@ public class Application {
         SpringApplication.run(Application.class, args);
 
     }
-
- /*   @Bean
+    /*
+   @Bean
     public CommandLineRunner demo(UserRepository repository) {
         return (args) -> {
-            repository.save(User.builder().userName("piyali")
+        repository.save(User.builder().userName("piyali")
                     .lastName("Bedagkar").name("piyali")
-                        .address("India").isAdmin(true).phoneNumber("04502678992").password("Bedagkar12345").build());
-                repository.save(User.builder().userName("Kote")
+                        .address("India").isAdmin(true).phoneNumber("04502678992").password("1234").build());
+                repository.save(User.builder().userName("kote")
                     .lastName("Kote").name("laszlo")
-                        .address("Turkey").isAdmin(false).phoneNumber("05321361234").password("KoteYusa12345").build());
+                        .address("Turkey").isAdmin(false).phoneNumber("05321361234").password("1234").build());
+
+            repository.save(User.builder().userName("customer")
+                    .lastName("customername").name("customerlastname")
+                    .address("india").isAdmin(false).phoneNumber("05321361234").password("1234").build());
         };
     }
-*/
+    */
+
+
   /*  @Bean
     public CommandLineRunner topping(ToppingRepository repository) {
         return (args) -> {

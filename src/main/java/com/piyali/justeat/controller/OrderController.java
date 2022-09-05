@@ -43,11 +43,23 @@ public class OrderController {
         modelAndView.addObject("toppings",toppings);
         return modelAndView;
     }
+
+    @RequestMapping(value = "/editOrderPage",method = RequestMethod.GET)
+    public ModelAndView editOrderPage(@RequestParam String orderId){
+        Order order = orderService.getOrderById(orderId);
+        List<Topping> toppings = toppingService.getAllToppings();
+        ModelAndView modelAndView = new ModelAndView("orderEditPage");
+        modelAndView.addObject("order",order);
+        modelAndView.addObject("toppings",toppings);
+        return modelAndView;
+    }
     @RequestMapping(value= "/orderListPage", method = RequestMethod.GET)
-    public String showCustomerPage(Model model, @RequestParam("username") String username){
-        List<Order> orderList = orderService.getAllOrderByUserName(username);
-        model.addAttribute("orders",orderList);
-        return "orderListPage";
+    public ModelAndView showCustomerPage(@RequestParam("username") String username){
+        List<Order> orderList = userService.findByName(username).getOrderList();
+        ModelAndView modelAndView = new ModelAndView("orderListPage");
+        modelAndView.addObject("orders",orderList);
+        System.out.println(orderList.size());
+        return modelAndView;
     }
 
 }

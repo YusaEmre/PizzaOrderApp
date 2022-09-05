@@ -29,6 +29,6 @@ public class User {
     private String password;
     private Boolean isAdmin = false;
 
-    @OneToMany(cascade = CascadeType.ALL,mappedBy = "user")
+    @OneToMany
     private List<Order> orderList;
 }
