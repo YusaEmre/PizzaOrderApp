@@ -12,18 +12,18 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 </head>
 <body>
-<div align="center" style="with: 50%; padding: 5px; margin-top: 10%; margin-bottom: 5px" >
+<div align="center" style="with: 50%; padding: 5px; margin-top: 10%; margin-bottom: 5px">
     <h1>Welcome to Just Eat Pizza</h1>
     <span style="padding:15px;"></span>
     <div class="card" style="width: 18rem;">
         <div class="card-body">
-            <a href="#" class="btn btn-primary stretched-link" style="width: 18rem">Place Order</a>
+            <a href="<spring:url value="/api/order/placeOrder?username=${username}"/>" class="btn btn-primary stretched-link" style="width: 18rem">Place Order</a>
         </div>
     </div>
     <span style="padding:5px;"></span>
     <div class="card" style="width: 18rem;">
         <div class="card-body">
-            <a href="<spring:url value="/api/order/orderListPage?username=${username}"/>" class="btn btn-primary stretched-link" style="width: 18rem">Place Order</a>
+            <a href="<spring:url value="/api/order/orderListPage?username=${username}"/>" class="btn btn-primary stretched-link" style="width: 18rem">Display Order</a>
         </div>
     </div>
     <span style="padding:5px;"></span>

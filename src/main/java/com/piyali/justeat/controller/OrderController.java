@@ -1,13 +1,17 @@
 package com.piyali.justeat.controller;
+import com.piyali.justeat.model.Topping;
+import com.piyali.justeat.model.User;
+import com.piyali.justeat.payload.request.OrderAddRequest;
 import com.piyali.justeat.service.OrderService;
 import com.piyali.justeat.model.Order;
+import com.piyali.justeat.service.ToppingService;
+import com.piyali.justeat.service.UserService;
 import lombok.RequiredArgsConstructor;
-import org.aspectj.weaver.ast.Or;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 
@@ -18,23 +22,32 @@ public class OrderController {
 
     //call order service
     private final OrderService orderService;
+    private final UserService userService;
 
+    private final ToppingService toppingService;
+
+    @RequestMapping(value = "/addOrder",method = RequestMethod.POST)
+    public ModelAndView addOrder(@ModelAttribute("OrderAddRequest") OrderAddRequest request){
+        Order order = orderService.saveOrder(request);
+        ModelAndView modelAndView = new ModelAndView("orderDetailPage");
+        modelAndView.addObject("order",order);
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "/placeOrder",method = RequestMethod.GET)
+    public ModelAndView placeOrderPage(@RequestParam String username){
+        User user = userService.findByName(username);
+        List<Topping> toppings = toppingService.getAllToppings();
+        ModelAndView modelAndView = new ModelAndView("placeOrderPage");
+        modelAndView.addObject("user",user);
+        modelAndView.addObject("toppings",toppings);
+        return modelAndView;
+    }
     @RequestMapping(value= "/orderListPage", method = RequestMethod.GET)
     public String showCustomerPage(Model model, @RequestParam("username") String username){
         List<Order> orderList = orderService.getAllOrderByUserName(username);
         model.addAttribute("orders",orderList);
         return "orderListPage";
-    }
-
-    @PostMapping("/addOrder")
-    public ResponseEntity<Order> addOrder(Order order){
-        return ResponseEntity.ok(orderService.saveOrder(order));
-    }
-
-
-    @GetMapping("/getAllOrder")
-    public ResponseEntity<List<Order>> getAllOrder(){
-        return ResponseEntity.ok(orderService.getAllOrder());
     }
 
 }
