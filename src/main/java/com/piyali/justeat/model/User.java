@@ -1,6 +1,5 @@
 package com.piyali.justeat.model;
 
-import lombok.Builder;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -9,7 +8,6 @@ import java.util.List;
 
 @Entity
 @Table(name = "users")
-@Builder
 public class User {
 
     @Id

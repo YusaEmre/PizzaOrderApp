@@ -1,11 +1,9 @@
 package com.piyali.justeat.model;
-import lombok.Builder;
 import org.hibernate.annotations.GenericGenerator;
 import javax.persistence.*;
 import java.util.function.LongFunction;
 
 @Entity
-@Builder
 public class Topping {
 
     @Id

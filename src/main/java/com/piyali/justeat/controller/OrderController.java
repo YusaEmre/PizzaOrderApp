@@ -86,13 +86,12 @@ public class OrderController {
 
 
     @RequestMapping(value = "/orderDetailPage",method = RequestMethod.GET)
-    public ModelAndView addOrder(@RequestParam("orderId") Long orderId,
+    public ModelAndView addOrder(@RequestParam(value = "orderId") Long orderId,
                                  RedirectAttributes redirectAttributes){
-        ModelAndView modelAndView = new ModelAndView();
+        ModelAndView modelAndView = new ModelAndView("orderDetailPage");
         try{
             Order order = orderService.getOrderById(orderId);
             modelAndView.addObject("order",order);
-            modelAndView.setViewName("orderDetailPage");
         }
         catch (Exception e){
             modelAndView.setViewName("orderListPage");

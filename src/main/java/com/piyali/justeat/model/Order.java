@@ -1,7 +1,6 @@
 package com.piyali.justeat.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import lombok.Builder;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;

@@ -15,11 +15,6 @@
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
-    <script>
-        function myFunc() {
-            var myOrderId = name.orderId.va
-        }
-    </script>
 </head>
 <body>
 
@@ -53,9 +48,11 @@
 </div>
 
 <div align="center" style="margin-top: 10%; margin-bottom: 3%;">
+    <form action="/api/order/orderDetailPage" method="GET">
     <label for="in" class="font-weight-bolder">Order Id</label>
     <input id="in" onchange="myFunc()" name="orderId" type="text"  aria-label="Default" aria-describedby="inputGroup-sizing-default">
-    <a href="<spring:url value="/api/order/orderDetailPage?orderId=${6}"/>" class="btn btn-primary" type="button">Search Order</a>
+    <input type="submit" value="Search Order" class="btn btn-primary"/></form>
+    </form>
 </div>
 
 <div align="center">
