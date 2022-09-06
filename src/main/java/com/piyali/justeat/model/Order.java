@@ -1,6 +1,7 @@
 package com.piyali.justeat.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import lombok.Builder;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -12,9 +13,8 @@ public class Order {
 
 
     @Id
-    @GeneratedValue(generator="uuid")
-    @GenericGenerator(name="uuid", strategy = "uuid2")
-    private String orderId;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long orderId;
 
     private Double totalPrice;
 
@@ -30,7 +30,8 @@ public class Order {
     @JsonFormat(pattern = "MM-dd-yyyy")
     private LocalDate deliveryDate;
 
-    public Order(String orderId, Double totalPrice, Topping topping, User user, LocalDate orderPlacedDate, LocalDate deliveryDate) {
+
+    public Order(Long orderId, Double totalPrice, Topping topping, User user, LocalDate orderPlacedDate, LocalDate deliveryDate) {
         this.orderId = orderId;
         this.totalPrice = totalPrice;
         this.topping = topping;
@@ -42,11 +43,12 @@ public class Order {
     public Order() {
     }
 
-    public String getOrderId() {
+
+    public Long getOrderId() {
         return orderId;
     }
 
-    public void setOrderId(String orderId) {
+    public void setOrderId(Long orderId) {
         this.orderId = orderId;
     }
 

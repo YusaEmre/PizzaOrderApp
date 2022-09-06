@@ -11,6 +11,8 @@
     <title>Just Eat</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/css/bootstrap.min.css">
 </head>
+<body>
+
 <nav class="navbar navbar-expand-sm bg-light">
 
     <ul class="navbar-nav ml-auto">
@@ -22,7 +24,6 @@
         </li>
     </ul>
 </nav>
-<body>
 <div align="center" style="with: 50%; padding: 5px; margin-top: 10%; margin-bottom: 5px">
     <h1>Welcome to Just Eat Pizza</h1>
     <span style="padding:15px;"></span>

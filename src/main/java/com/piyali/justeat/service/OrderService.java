@@ -40,17 +40,8 @@ public class OrderService {
         return order;
     }
 
-    public List<Order> getAllOrder() {
-        return orderRepository.findAll();
-    }
 
-    public List<Order> getAllOrderByUserName(String username) {
-
-        return orderRepository.getAllByUser_UserName(username);
-    }
-
-
-    public Order getOrderById(String orderId){
+    public Order getOrderById(Long orderId){
         return orderRepository.getOrderByOrderId(orderId).orElseThrow(()-> new NotFoundException("Order not found"));
     }
 
@@ -60,4 +51,17 @@ public class OrderService {
         order.setTopping(topping);
         orderRepository.flush();
     }
+
+    public List<Order> getAllOrder(){
+        return orderRepository.findAll();
+    }
+
+    public void deleteOrder(Long orderId){
+        Order order = getOrderById(orderId);
+        User user = order.getUser();
+        user.getOrderList().remove(order);
+        orderRepository.deleteById(orderId);
+        orderRepository.flush();
+    }
+
 }

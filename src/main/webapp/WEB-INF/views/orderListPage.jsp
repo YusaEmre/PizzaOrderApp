@@ -10,25 +10,56 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>Just Eat</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+    <script>
+        function myFunc() {
+            var myOrderId = name.orderId.va
+        }
+    </script>
 </head>
+<body>
 
 <nav class="navbar navbar-expand-sm bg-light">
 
+    <ul>
+        <li class="nav-item" style="list-style-type: none">
+            <h4 style="padding: 8px; margin-right: 8px; display: inline-block;" class="font-italic ">JustEat Pizzas</h4>
+        </li>
+    </ul>
+
     <ul class="navbar-nav ml-auto">
         <li class="nav-item">
-            <span style="margin: 10px" class="font-weight-bolder"> ${username}</span>
+            <span style="padding: 8px; margin-right: 8px; display: inline-block" class="font-weight-bold"> ${param.username}</span>
         </li>
         <li class="nav-item">
             <a href="<spring:url value="/login"/>" class="btn btn-danger" style="width: 5rem">Logout</a>
         </li>
     </ul>
 </nav>
-<body>
+
+<div align="left" style="margin-top: 2%; margin-left: 2%; position: fixed">
+    <a href="<spring:url value="/home?username=${param.username}"/>" class="btn btn-secondary">
+        <i class="bi bi-arrow-return-left"></i>
+        Back
+    </a>
+-</div>
+
+<div align="center" style="margin-top: 2%;">
+    <h1>Order List</h1>
+</div>
+
+<div align="center" style="margin-top: 10%; margin-bottom: 3%;">
+    <label for="in" class="font-weight-bolder">Order Id</label>
+    <input id="in" onchange="myFunc()" name="orderId" type="text"  aria-label="Default" aria-describedby="inputGroup-sizing-default">
+    <a href="<spring:url value="/api/order/orderDetailPage?orderId=${6}"/>" class="btn btn-primary" type="button">Search Order</a>
+</div>
 
 <div align="center">
-    <h1> Order List </h1>
-<table class="table" style="width: 70%; padding: 5px; margin-top: 20%">
+    <table class="table" style="width: 70%; padding: 5px; margin-top: 20%">
     <thead>
 <tr>
         <th scope="col">#</th>
@@ -39,6 +70,9 @@
         <th scope="col">Order Placed Date</th>
         <th scope="col">Delivery Date</th>
         <th scope="col">Total</th>
+        <th scope="col">Edit Order</th>
+        <th scope="col">Delete Order</th>
+
     </tr>
     </thead>
     <tbody>
@@ -53,7 +87,8 @@
         <td>${order.deliveryDate}</td>
         <td>${order.totalPrice}</td>
     <td><a href="<spring:url value="/api/order/editOrderPage?orderId=${order.orderId}"/>" class="btn btn-primary"  style="margin: 10px">Edit</a></td>
-    </tr>
+    <td><a href="<spring:url value="/api/order/deleteOrder/${order.orderId}"/>" class="btn btn-danger"  style="margin: 10px">Delete</a></td>
+</tr>
 </c:forEach>
     <tbody>
 </table>

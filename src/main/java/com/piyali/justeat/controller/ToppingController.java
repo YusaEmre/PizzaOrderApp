@@ -35,7 +35,7 @@ public class ToppingController {
 
 
     @RequestMapping(value= "/toppingEditPage", method = RequestMethod.GET)
-    public ModelAndView showToppingEditPage(@RequestParam("username") String username,@RequestParam(name = "toppingId") String toppingId){
+    public ModelAndView showToppingEditPage(@RequestParam("username") String username,@RequestParam(name = "toppingId") Long toppingId){
         Topping topping = toppingService.getToppingById(toppingId);
         ModelAndView modelAndView = new ModelAndView("editTopping");
         modelAndView.addObject("topping",topping);

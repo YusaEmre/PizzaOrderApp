@@ -1,10 +1,10 @@
 package com.piyali.justeat.payload.request;
 
 public class OrderEditRequest {
-    private String orderId;
+    private Long orderId;
     private Double toppingPrice;
 
-    public OrderEditRequest(String orderId, Double toppingPrice) {
+    public OrderEditRequest(Long orderId, Double toppingPrice) {
         this.orderId = orderId;
         this.toppingPrice = toppingPrice;
     }
@@ -12,11 +12,11 @@ public class OrderEditRequest {
     public OrderEditRequest() {
     }
 
-    public String getOrderId() {
+    public Long getOrderId() {
         return orderId;
     }
 
-    public void setOrderId(String orderId) {
+    public void setOrderId(Long orderId) {
         this.orderId = orderId;
     }
 

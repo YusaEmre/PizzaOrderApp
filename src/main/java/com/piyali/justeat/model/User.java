@@ -1,5 +1,6 @@
 package com.piyali.justeat.model;
 
+import lombok.Builder;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -8,12 +9,12 @@ import java.util.List;
 
 @Entity
 @Table(name = "users")
+@Builder
 public class User {
 
     @Id
-    @GeneratedValue(generator="uuid")
-    @GenericGenerator(name="uuid", strategy = "uuid2")
-    private String id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private String userName;
     private String name;
     private String lastName;
@@ -22,14 +23,14 @@ public class User {
     private String password;
     private Boolean isAdmin = false;
 
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL,orphanRemoval = true,fetch = FetchType.EAGER)
     private List<Order> orderList;
 
-    public String getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -100,7 +101,7 @@ public class User {
     public User() {
     }
 
-    public User(String id, String userName, String name, String lastName, String address, String phoneNumber, String password, Boolean isAdmin, List<Order> orderList) {
+    public User(Long id, String userName, String name, String lastName, String address, String phoneNumber, String password, Boolean isAdmin, List<Order> orderList) {
         this.id = id;
         this.userName = userName;
         this.name = name;

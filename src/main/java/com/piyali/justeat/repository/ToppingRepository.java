@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 import java.util.Optional;
 
 @Repository
-public interface ToppingRepository extends JpaRepository<Topping,String> {
+public interface ToppingRepository extends JpaRepository<Topping,Long> {
 
     Optional<Topping> findByToppingName(String toppingName);
 

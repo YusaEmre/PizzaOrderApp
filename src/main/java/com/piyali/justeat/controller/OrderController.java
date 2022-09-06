@@ -1,4 +1,5 @@
 package com.piyali.justeat.controller;
+import com.piyali.justeat.exception.NotFoundException;
 import com.piyali.justeat.model.Topping;
 import com.piyali.justeat.model.User;
 import com.piyali.justeat.payload.request.OrderAddRequest;
@@ -10,6 +11,7 @@ import com.piyali.justeat.service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 
@@ -48,7 +50,7 @@ public class OrderController {
     }
 
     @RequestMapping(value = "/editOrderPage",method = RequestMethod.GET)
-    public ModelAndView editOrderPage(@RequestParam("orderId") String orderId){
+    public ModelAndView editOrderPage(@RequestParam("orderId") Long orderId){
         Order order = orderService.getOrderById(orderId);
         List<Topping> toppings = toppingService.getAllToppings();
         ModelAndView modelAndView = new ModelAndView("orderEditPage");
@@ -57,11 +59,18 @@ public class OrderController {
         return modelAndView;
     }
     @RequestMapping(value= "/orderListPage", method = RequestMethod.GET)
-    public ModelAndView showCustomerPage(@RequestParam("username") String username){
-        List<Order> orderList = userService.findByName(username).getOrderList();
+    public ModelAndView showOrderListPage(@RequestParam("username") String username){
         ModelAndView modelAndView = new ModelAndView("orderListPage");
-        modelAndView.addObject("orders",orderList);
-        System.out.println(orderList.size());
+        User user = userService.findByName(username);
+        if(user.getAdmin()){
+            List<Order> orderList = orderService.getAllOrder();
+            modelAndView.addObject("orders",orderList);
+        }
+        else {
+            List<Order> orderList = userService.findByName(username).getOrderList();
+            modelAndView.addObject("orders",orderList);
+        }
+
         return modelAndView;
     }
 
@@ -74,5 +83,30 @@ public class OrderController {
         modelAndView.addObject("username",username);
         return modelAndView;
     }
+
+
+    @RequestMapping(value = "/orderDetailPage",method = RequestMethod.GET)
+    public ModelAndView addOrder(@RequestParam("orderId") Long orderId,
+                                 RedirectAttributes redirectAttributes){
+        ModelAndView modelAndView = new ModelAndView();
+        try{
+            Order order = orderService.getOrderById(orderId);
+            modelAndView.addObject("order",order);
+            modelAndView.setViewName("orderDetailPage");
+        }
+        catch (Exception e){
+            modelAndView.setViewName("orderListPage");
+            redirectAttributes.addFlashAttribute("error",e.getMessage());
+        }
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "/deleteOrder/{orderId}",method = RequestMethod.GET)
+    public ModelAndView deleteOrder(@PathVariable(value = "orderId") Long orderId){
+        String username = orderService.getOrderById(orderId).getUser().getUserName();
+        orderService.deleteOrder(orderId);
+        return showOrderListPage(username);
+    }
+
 
 }

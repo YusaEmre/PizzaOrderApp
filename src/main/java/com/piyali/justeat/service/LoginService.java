@@ -27,9 +27,4 @@ public class LoginService {
        }
     }
 
-
-    public void deleteUser(String userId){
-        userRepository.deleteById(userId);
-    }
-
 }

@@ -5,7 +5,7 @@ package com.piyali.justeat.payload.request;
 
 
 public class OrderAddRequest {
-    private String customerId;
+    private Long customerId;
     private String customerName;
     private String customerLastName;
     private String customerAddress;
@@ -14,7 +14,7 @@ public class OrderAddRequest {
     private Double totalPrice;
     private String deliveryDate;
 
-    public OrderAddRequest(String customerId, String customerName, String customerLastName, String customerAddress, String customerPhoneNumber, Double toppingPrice, Double totalPrice, String deliveryDate) {
+    public OrderAddRequest(Long customerId, String customerName, String customerLastName, String customerAddress, String customerPhoneNumber, Double toppingPrice, Double totalPrice, String deliveryDate) {
         this.customerId = customerId;
         this.customerName = customerName;
         this.customerLastName = customerLastName;
@@ -25,11 +25,11 @@ public class OrderAddRequest {
         this.deliveryDate = deliveryDate;
     }
 
-    public String getCustomerId() {
+    public Long getCustomerId() {
         return customerId;
     }
 
-    public void setCustomerId(String customerId) {
+    public void setCustomerId(Long customerId) {
         this.customerId = customerId;
     }
 

@@ -23,7 +23,7 @@ public class ToppingService {
         return toppingRepository.findByToppingPrice(price).orElseThrow(()-> new NotFoundException("Topping not found"));
     }
 
-    public Topping getToppingById(String id){
+    public Topping getToppingById(Long id){
         return toppingRepository.findById(id).orElseThrow(()-> new NotFoundException("Topping not found"));
     }
     public List<Topping> getAllToppings(){

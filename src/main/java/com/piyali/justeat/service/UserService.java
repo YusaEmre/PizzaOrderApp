@@ -20,7 +20,7 @@ public class UserService {
         return userRepository.findByUserName(username).orElseThrow(()->new NotFoundException("User not found"));
     }
 
-    public User findById(String id){
+    public User findById(Long id){
         return userRepository.findById(id).orElseThrow(()->new NotFoundException("User not found"));
     }
 }

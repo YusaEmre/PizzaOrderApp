@@ -28,7 +28,7 @@
     <span style="padding:15px;"></span>
     <div class="card" style="width: 18rem;">
         <div class="card-body">
-            <a href="<spring:url value="/api/order/searchOrder?username=${username}"/>" class="btn btn-primary" style="width: 12rem">Display Order</a>
+            <a href="<spring:url value="/api/order/orderListPage?username=${username}"/>" class="btn btn-primary" style="width: 12rem">Display Order</a>
         </div>
     </div>
     <span style="padding:5px;"></span>

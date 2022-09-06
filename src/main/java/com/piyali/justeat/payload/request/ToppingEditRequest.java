@@ -1,7 +1,7 @@
 package com.piyali.justeat.payload.request;
 
 public class ToppingEditRequest {
-    private String toppingId;
+    private Long toppingId;
     private String toppingName;
     private Double toppingPrice;
 
@@ -12,7 +12,7 @@ public class ToppingEditRequest {
         this.toppingPrice = toppingPrice;
     }
 
-    public ToppingEditRequest(String toppingId, String toppingName, Double toppingPrice) {
+    public ToppingEditRequest(Long toppingId, String toppingName, Double toppingPrice) {
         this.toppingId = toppingId;
         this.toppingName = toppingName;
         this.toppingPrice = toppingPrice;
@@ -21,11 +21,11 @@ public class ToppingEditRequest {
     public ToppingEditRequest() {
     }
 
-    public String getToppingId() {
+    public Long getToppingId() {
         return toppingId;
     }
 
-    public void setToppingId(String toppingId) {
+    public void setToppingId(Long toppingId) {
         this.toppingId = toppingId;
     }
 
