@@ -4,9 +4,12 @@ public class OrderEditRequest {
     private Long orderId;
     private Double toppingPrice;
 
-    public OrderEditRequest(Long orderId, Double toppingPrice) {
+    private Double totalPrice;
+
+    public OrderEditRequest(Long orderId, Double toppingPrice,Double totalPrice) {
         this.orderId = orderId;
         this.toppingPrice = toppingPrice;
+        this.totalPrice= totalPrice;
     }
 
     public OrderEditRequest() {
@@ -26,5 +29,13 @@ public class OrderEditRequest {
 
     public void setToppingPrice(Double toppingPrice) {
         this.toppingPrice = toppingPrice;
+    }
+
+    public Double getTotalPrice() {
+        return totalPrice;
+    }
+
+    public void setTotalPrice(Double totalPrice) {
+        this.totalPrice = totalPrice;
     }
 }

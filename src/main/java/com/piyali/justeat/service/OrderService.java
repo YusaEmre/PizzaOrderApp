@@ -50,6 +50,8 @@ public class OrderService {
         Topping topping = toppingService.getToppingByPrice(request.getToppingPrice());
 
         order.setTopping(topping);
+        order.setTotalPrice(request.getTotalPrice());
+        //orderRepository.save(order);
         orderRepository.flush();
     }
 

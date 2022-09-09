@@ -83,7 +83,7 @@
             <tr>
                 <td>Price: </td>
                 <td>
-                    <input o name="totalPrice" readonly value="${order.totalPrice}" type="text" id="price" >
+                    <input name="totalPrice" readonly value="${order.totalPrice}" type="text" id="price" >
                 </td>
             </tr>
         </table>
