@@ -13,9 +13,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 
 @Controller
-@SessionAttributes("name")
-
-
 public class LoginController {
 
     private  final UserService userService;
@@ -27,18 +24,18 @@ public class LoginController {
     }
 
 
-
     @RequestMapping(value= {"/login",""}, method = RequestMethod.GET)
     public String showLoginPage(){
         return "login";
     }
-
     @RequestMapping(value = "/home",method = RequestMethod.POST)
     public ModelAndView showHomePage(@ModelAttribute("loginRequest") LoginRequest loginRequest,
                                      RedirectAttributes redirectAttributes)  {
-
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("username",loginRequest.getUsername());
+
+        // Login validation and admin check if user admin returns admin page if user customer returns customer page
+        // if user not valid shows error
         try {
             boolean isAdmin =  loginService.validateUser(loginRequest);
             if(isAdmin){
@@ -53,6 +50,8 @@ public class LoginController {
             return modelAndView;
         }
     }
+
+    // Returns home page and passes username to home page
     @RequestMapping(value = "/home",method = RequestMethod.GET)
     public ModelAndView showHomePage(@RequestParam("username") String username)  {
         User user = userService.findByName(username);
@@ -65,7 +64,4 @@ public class LoginController {
         }
         return modelAndView;
     }
-
-
-
 }

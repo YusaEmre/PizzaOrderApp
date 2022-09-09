@@ -22,11 +22,22 @@
 
 
 </head>
-<body>
+<body style=background-image:url("../../assets/pizzabackground2.jpg");background-repeat:no-repeat,no-repeat;>
+<nav class="navbar navbar-expand-sm bg-light">
+
+    <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+            <span style="margin: 10px" class="font-weight-bolder"> ${username}</span>
+        </li>
+        <li class="nav-item">
+            <a href="<spring:url value="/login"/>" class="btn btn-danger" style="width: 5rem">Logout</a>
+        </li>
+    </ul>
+</nav>
 <div align="center">
     <h1>Edit Your Order</h1>
 
-    <form action="/api/order/updateOrder?username=${order.user.userName}" method="post" modelAttribute="OrderEditRequest">
+    <form action="/api/order/updateOrder?username=${username}" method="post" modelAttribute="OrderEditRequest">
         <table border="0" style="with: 50%; padding: 5px; margin-top: 10%; margin-bottom: 5px">
             <tr>
                 <td>Order Id</td>

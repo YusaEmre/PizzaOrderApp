@@ -1,4 +1,5 @@
 package com.piyali.justeat.service;
+import com.piyali.justeat.exception.InvalidUserCredentialsException;
 import com.piyali.justeat.exception.NotFoundException;
 import com.piyali.justeat.model.User;
 import com.piyali.justeat.payload.request.LoginRequest;
@@ -21,7 +22,7 @@ public class LoginService {
     public boolean validateUser(LoginRequest loginRequest) {
        Optional<User> optionalUser = userRepository.findByUserNameAndPassword(loginRequest.getUsername(), loginRequest.getPassword());
        if(!optionalUser.isPresent()){
-           throw new NotFoundException("Wrong username or password");
+           throw new InvalidUserCredentialsException("Wrong username or password");
        }else{
            return optionalUser.get().getAdmin();
        }

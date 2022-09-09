@@ -12,6 +12,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 
+
+// Topping related endpoints
 @Controller
 @RequestMapping(path = "/api/topping")
 public class ToppingController {
@@ -23,6 +25,7 @@ public class ToppingController {
 
 
 
+    // Passes toppings to  topping list page and returns the page
     @RequestMapping(value= "/toppingListPage", method = RequestMethod.GET)
     public ModelAndView showToppingListPage(@RequestParam("username") String username){
         List<Topping> toppingList = toppingService.getAllToppings();
@@ -34,6 +37,7 @@ public class ToppingController {
 
 
 
+    // Passes topping to topping edit page and returns the page
     @RequestMapping(value= "/toppingEditPage", method = RequestMethod.GET)
     public ModelAndView showToppingEditPage(@RequestParam("username") String username,@RequestParam(name = "toppingId") Long toppingId){
         Topping topping = toppingService.getToppingById(toppingId);
@@ -44,6 +48,7 @@ public class ToppingController {
     }
 
 
+    // Updates the topping and returns the topping list page back
     @RequestMapping(value = "/updateTopping",method = RequestMethod.POST)
     public ModelAndView updateTopping(@RequestParam("username")String username ,@ModelAttribute("ToppingEditRequest")ToppingEditRequest toppingEditRequest){
         toppingService.updateTopping(toppingEditRequest);

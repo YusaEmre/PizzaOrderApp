@@ -22,7 +22,7 @@
         </li>
     </ul>
 </nav>
-<body>
+<body style=background-image:url("../../assets/pizzabackground2.jpg");background-repeat:no-repeat,no-repeat;>
 <div align="center" style="with: 50%; padding: 5px; margin-top: 10%; margin-bottom: 5px">
     <h1>Welcome to Just Eat Pizza</h1>
     <span style="padding:15px;"></span>

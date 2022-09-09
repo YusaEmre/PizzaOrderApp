@@ -6,6 +6,8 @@ import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
 
+
+//Jpa repository contains a lot of ready to use functions, jpa creates  sql queries with hibernate
 @Repository
 public interface ToppingRepository extends JpaRepository<Topping,Long> {
 

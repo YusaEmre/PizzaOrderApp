@@ -10,7 +10,7 @@
     <title>Login</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/css/bootstrap.min.css">
 </head>
-<body>
+<body style=background-image:url("../../assets/pizzabackground2.jpg");background-repeat:no-repeat,no-repeat;>
 <div align="center">
     <h1>Login</h1>
     <form action="home" method="post" modelAttribute="loginRequest">

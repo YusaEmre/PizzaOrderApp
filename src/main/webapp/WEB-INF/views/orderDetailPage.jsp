@@ -10,7 +10,18 @@
     <title>Just Eat</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/css/bootstrap.min.css">
 </head>
-<body>
+<body style=background-image:url("../../assets/pizzabackground2.jpg");background-repeat:no-repeat,no-repeat;>
+<nav class="navbar navbar-expand-sm bg-light">
+
+    <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+            <span style="margin: 10px" class="font-weight-bolder"> ${username}</span>
+        </li>
+        <li class="nav-item">
+            <a href="<spring:url value="/login"/>" class="btn btn-danger" style="width: 5rem">Logout</a>
+        </li>
+    </ul>
+</nav>
 <div align="center" >
     <h1>Order Detail Page</h1>
 
@@ -46,8 +57,8 @@
             </tr>
         </table>
     </form>
-    <a href="<spring:url value="/home?username=${order.user.userName}"/>" class="btn btn-primary"  style="margin: 10px">Ok</a>
-    <a href="<spring:url value="/api/order/editOrderPage?orderId=${order.orderId}"/>" class="btn btn-primary" style="margin: 10px" >Edit Order</a>
+    <a href="<spring:url value="/home?username=${username}"/>" class="btn btn-primary"  style="margin: 10px">Ok</a>
+    <a href="<spring:url value="/api/order/editOrderPage?orderId=${order.orderId}&username=${username}"/>" class="btn btn-primary" style="margin: 10px" >Edit Order</a>
 
 </div>
 </body>

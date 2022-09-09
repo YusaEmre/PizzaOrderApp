@@ -12,7 +12,7 @@
     <title>Just Eat</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/css/bootstrap.min.css">
 </head>
-<body>
+<body style=background-image:url("../../assets/pizzabackground2.jpg");background-repeat:no-repeat,no-repeat;>
 <nav class="navbar navbar-expand-sm bg-light">
 
     <ul class="navbar-nav ml-auto">

@@ -7,6 +7,7 @@ import java.util.List;
 
 
 @Entity
+// In the mysql database the word  user  is a keyword because of that table name changed to users
 @Table(name = "users")
 public class User {
 

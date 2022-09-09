@@ -16,7 +16,7 @@
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
 </head>
-<body>
+<body style=background-image:url("../../assets/pizzabackground2.jpg");background-repeat:no-repeat,no-repeat; >
 
 <nav class="navbar navbar-expand-sm bg-light">
 
@@ -40,8 +40,7 @@
     <a href="<spring:url value="/home?username=${param.username}"/>" class="btn btn-secondary">
         <i class="bi bi-arrow-return-left"></i>
         Back
-    </a>
--</div>
+    </a></div>
 
 <div align="center" style="margin-top: 2%;">
     <h1>Order List</h1>
@@ -51,9 +50,14 @@
     <form action="/api/order/orderDetailPage" method="GET">
     <label for="in" class="font-weight-bolder">Order Id</label>
     <input id="in" onchange="myFunc()" name="orderId" type="text"  aria-label="Default" aria-describedby="inputGroup-sizing-default">
+        <input style="display: none" value="${param.username}" name="username">
     <input type="submit" value="Search Order" class="btn btn-primary"/></form>
     </form>
+        <p align="center"> <p  class="text-danger">
+            ${error}
+        </p>
 </div>
+
 
 <div align="center">
     <table class="table" style="width: 70%; padding: 5px; margin-top: 20%">
@@ -83,8 +87,8 @@
         <td>${order.orderPlacedDate}</td>
         <td>${order.deliveryDate}</td>
         <td>${order.totalPrice}</td>
-    <td><a href="<spring:url value="/api/order/editOrderPage?orderId=${order.orderId}"/>" class="btn btn-primary"  style="margin: 10px">Edit</a></td>
-    <td><a href="<spring:url value="/api/order/deleteOrder/${order.orderId}"/>" class="btn btn-danger"  style="margin: 10px">Delete</a></td>
+    <td><a href="<spring:url value="/api/order/editOrderPage?orderId=${order.orderId}&username=${param.username}"/>" class="btn btn-primary"  style="margin: 10px">Edit</a></td>
+    <td><a href="<spring:url value="/api/order/deleteOrder/${order.orderId}?username=${param.username}"/>" class="btn btn-danger"  style="margin: 10px">Delete</a></td>
 </tr>
 </c:forEach>
     <tbody>

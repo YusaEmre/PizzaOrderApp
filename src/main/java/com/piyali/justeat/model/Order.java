@@ -7,6 +7,7 @@ import javax.persistence.*;
 import java.time.LocalDate;
 
 @Entity
+// In the mysql database the word  order  is a keyword because of that table name changed to orders
 @Table(name = "orders")
 public class Order {
 

@@ -48,6 +48,7 @@ public class OrderService {
     public void updateOrder(OrderEditRequest request) {
         Order order = orderRepository.findById(request.getOrderId()).orElseThrow(()-> new NotFoundException("Order not found"));
         Topping topping = toppingService.getToppingByPrice(request.getToppingPrice());
+
         order.setTopping(topping);
         orderRepository.flush();
     }
